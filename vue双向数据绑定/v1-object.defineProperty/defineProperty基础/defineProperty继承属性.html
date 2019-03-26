@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>defineProperty 常见set/get写法</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <script>
+        function myClass (){
+        }
+            var value;
+            Object.defineProperty(myClass.prototype,'x',{
+                get(){
+                    return value;
+                },
+                set(x){
+                    value = x;
+                }
+            })
+        var a= new myClass();
+        var b= new myClass();
+        a.x = 1;
+        console.log(b.x);
+
+        </script>
+</body>
+</html>

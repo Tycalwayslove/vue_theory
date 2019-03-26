@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>defineProperty 常见set/get写法</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <script>
+        function Archiver(){
+            var temperature = null;
+            var archive = []
+
+            Object.defineProperty(this,'temperature',{
+                get:function(){
+                    console.log('get');
+                    return temperature;
+                },
+                set:function(value){
+
+                    console.log('set');
+                    temperature = value;
+                    archive.push({value:temperature})
+                }
+            })
+
+            this.getArchive = function (){
+                console.log(archive)
+                return archive;
+            }
+        }
+        var arc = new Archiver();
+        arc.temperature; //get
+        arc.temperature =1; //set
+        arc.temperature =2; //set
+        arc.getArchive(); //[{value:1},{value:2}]
+        
+        </script>
+</body>
+</html>
