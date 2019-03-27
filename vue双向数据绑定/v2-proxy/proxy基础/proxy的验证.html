@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>proxy的验证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <script>
+       let validator = {
+           set:function(obj,prop,value){
+               if(prop === 'age'){
+                   if(!Number.isInteger(value)){
+                       throw new TypeError ('The age is not an Integer')
+                       
+                   }
+                   if(value > 200 ){
+                       throw new RangeError('The age seems invalid')
+                   }
+                   obj[prop] = value
+               }
+           }
+       }
+       let person = new Proxy({},validator)
+    //    person.age = 12
+       person.age = '21'
+       alert(person.age)
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>proxy的值修正及附加属性</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <script>
+       //以下products 代理会计算传值并根据需要转换为数组。这个代理对象同时支持一个叫做latestBrower 的附加属性，这个属性同时被getter 和 setter
+
+       let products = new Proxy({
+           browsers:['Internet Explorer', 'Netscape']
+       },
+       {
+           get:function(obj,prop){
+            //    console.log(obj)
+            //    console.log(prop)
+            // 附加属性
+            if( prop === 'latestBrowsers'){
+                return obj.browsers[obj.browsers.length -1 ];
+            }
+            // 缺省行为返回属性值
+            return obj[prop]
+           },
+           set:function(obj,prop,value){
+            //    console.log(obj)
+            //    console.log(prop)
+            //    console.log(value)
+               //附加属性
+               if(prop === 'latestBrowsers'){
+                   obj.browsers.push(value)
+                   return;
+               }
+            //    如果不是数组则进行转换
+            console.log(typeof value)
+            if(typeof value === 'string'){
+                console.log('不是数组时的value:'+ value)
+                value = [value]
+                console.log([value])
+                console.log(value)
+            }
+            obj[prop] = value
+            console.log(obj[prop])
+           }
+       }
+       )
+       
+       console.log(products.browsers) // ['Internet Explorer', 'Netscape']
+       products.browsers = 'Firefox'
+       console.log(products.browsers) // ['Firefox']
+       products.latestBrowsers = 'Chrome'
+       console.log(products.browsers)
+       console.log(products)
+       
+
+
+
+    </script>
+</body>
+</html>
