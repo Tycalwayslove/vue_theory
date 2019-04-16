@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      面向对象-属性类型 |基础 | 读取属性的特性 | getOwnPropertyDescriptor
+    </title>
+  </head>
+  <body>
+    <script>
+      var book = {};
+      Object.defineProperties(book, {
+        _year: {
+          value: 2018
+        },
+        edition: {
+          value: 2
+        },
+        year: {
+          get: function() {
+            return this._year;
+          },
+          get: function(newvalue) {
+            if (newvalue > 2018) {
+              this._year = newvalue;
+              this.edition += newvalue - 2018;
+            }
+          }
+        }
+      });
+      var descriptor = Object.getOwnPropertyDescriptor(book, "_year");
+      alert(descriptor.value);
+      alert(descriptor.writable);
+      alert(descriptor.get);
+    </script>
+  </body>
+</html>
