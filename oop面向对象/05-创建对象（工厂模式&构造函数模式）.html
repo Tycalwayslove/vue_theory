@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      面向对象-属性类型 |基础 | 创建对象 | 工厂模式 | 构造函数模式
+    </title>
+  </head>
+  <body>
+    <script>
+      //1.工厂模式
+      function createPerson(name, age, job) {
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function() {
+          alert(this.name);
+        };
+        return o;
+      }
+      var person1 = createPerson("tyc", 23, "web");
+
+      // 2.构造函数模式
+
+      function Person(name, age, job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.sayName = function() {
+          alert(this.name);
+        };
+      }
+      var Person = new Person("tyc", 23, "web");
+    </script>
+  </body>
+</html>
