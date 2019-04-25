@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      面向对象-属性类型 |基础 | 原型对象 | isPrototypeOf() | getPrototypeOf()
+    </title>
+  </head>
+  <body>
+    <script>
+      // 原型模式
+      function Person() {}
+      Person.prototype.name = "tyc";
+      Person.prototype.age = 12;
+      Person.prototype.job = "teacher";
+      Person.prototype.sayName = function() {
+        alert(this.name);
+      };
+
+      var Person1 = new Person();
+      Person1.name = "tyccc";
+      // alert(Person1.constructor === Person); //true
+      // alert(Person2.constructor === Person); //true
+      // alert(Object.getPrototypeOf(Person1) == Person.prototype);
+      // alert(Person.prototype.isPrototypeOf(Person1));
+      console.log(Person1);
+      console.log(Object.getPrototypeOf(Person1));
+      console.log(Person.prototype.isPrototypeOf(Person1));
+      console.log(Person1.hasOwnProperty("name"));
+      console.log(Object.getOwnPropertyDescriptor(Person1, "name"));
+    </script>
+  </body>
+</html>
